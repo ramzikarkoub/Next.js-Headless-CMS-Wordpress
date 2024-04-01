@@ -4,6 +4,8 @@ export default function Form() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
+    const formId = 1655; // Assuming you have the form ID
+    formData.append("_wpcf7_unit_tag", "wpcf7-f" + formId + "-123"); // Adding the _wpcf7_unit_tag parameter
     const reqOptions = {
       method: "POST",
       body: formData,
