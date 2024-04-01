@@ -9,7 +9,7 @@ export default function Form() {
       body: formData,
     };
     const req = await fetch(
-      "http://localhost/wordpress/wp-json/contact-form-7/v1/contact-forms/1655/feedback",
+      "https://www.ramzikarkoub.com/wp-json/contact-form-7/v1/contact-forms/1655/feedback",
       reqOptions
     );
     const response = await req.json();
@@ -19,7 +19,7 @@ export default function Form() {
     <form onSubmit={handleSubmit}>
       <div className="mb-5">
         <label
-          for="name"
+          htmlFor="name"
           className="mb-3 block text-base font-medium text-[#07074D]"
         >
           Full Name
@@ -34,7 +34,7 @@ export default function Form() {
       </div>
       <div className="mb-5">
         <label
-          for="email"
+          htmlFor="email"
           className="mb-3 block text-base font-medium text-[#07074D]"
         >
           Email Address
@@ -49,7 +49,7 @@ export default function Form() {
       </div>
       <div className="mb-5">
         <label
-          for="subject"
+          htmlFor="subject"
           className="mb-3 block text-base font-medium text-[#07074D]"
         >
           Subject
@@ -64,7 +64,7 @@ export default function Form() {
       </div>
       <div className="mb-5">
         <label
-          for="message"
+          htmlFor="message"
           className="mb-3 block text-base font-medium text-[#07074D]"
         >
           Message
