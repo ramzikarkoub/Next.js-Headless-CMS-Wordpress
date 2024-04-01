@@ -6,12 +6,13 @@ if (!URL.canParse(process.env.WORDPRESS_API_URL)) {
 }
 
 const { protocol, hostname, port, pathname } = new URL(
-  process.env.WORDPRESS_API_URL,
+  process.env.WORDPRESS_API_URL
 );
 
 /** @type {import('next').NextConfig} */
 module.exports = {
   images: {
+    domains: ["secure.gravatar.com", hostname], // Add 'secure.gravatar.com' and your WordPress domain here
     remotePatterns: [
       {
         protocol: protocol.slice(0, -1),
