@@ -17,9 +17,10 @@ function ProjectCard({ project }) {
       <div className="flex items-center justify-center w-full  border border-gray-300 border-3 rounded-t-lg overflow-hidden">
         <Image
           src={project.acf.image_thumbnail}
+          alt="Thumbnail Image"
           width={350}
           height={200}
-          className="w-full h-full object-cover"
+          className="object-cover w-full h-full"
           layout="responsive"
         />
       </div>
