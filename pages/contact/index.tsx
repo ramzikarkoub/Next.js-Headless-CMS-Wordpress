@@ -1,5 +1,5 @@
 import React from "react";
-import Footer from "../../components/Footer";
+import Footer from "../../components/Foote";
 import Form from "../../components/Form";
 import Header from "../../components/Header";
 
@@ -41,7 +41,6 @@ export default function Contact() {
           </div>
         </div>
       </div>
-
       <Footer />
     </div>
   );
