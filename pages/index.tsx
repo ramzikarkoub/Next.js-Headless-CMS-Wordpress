@@ -21,10 +21,10 @@ function Project() {
 
   return (
     <div
-      class="flex justify-center items-center h-screen will-change-contents 
+      className="flex justify-center items-center h-screen will-change-contents 
     "
     >
-      <div class="text-center border border-gray-300 border-3 max-w-xl p-20">
+      <div className="text-center border border-gray-300 border-3 max-w-xl p-20">
         <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
           RAMZI's PORTFOLIO
         </h2>
