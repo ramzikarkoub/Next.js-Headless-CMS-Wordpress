@@ -2,8 +2,8 @@
 
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import Footer from "../../components/Footer";
-import Header from "../../components/Header";
+import Footer from "../../components/Foote";
+import Header from "../../components/Nav";
 import UsedTechnologies from "../../components/UsedTechnologies";
 
 const ProjectPage = () => {

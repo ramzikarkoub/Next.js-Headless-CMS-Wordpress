@@ -2,8 +2,8 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import ProjectCard from "../../components/ProjectCard";
-import Footer from "../../components/Footer";
-import Header from "../../components/Header";
+import Footer from "../../components/Foote";
+import Header from "../../components/Nav";
 
 export default function allprojects() {
   const [projects, setProjects] = useState([]);
