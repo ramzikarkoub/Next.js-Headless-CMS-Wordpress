@@ -70,7 +70,7 @@ export default function Form() {
           Message
         </label>
         <textarea
-          rows="4"
+          rows={4}
           name="your-message"
           id="message"
           placeholder="Type your message"
