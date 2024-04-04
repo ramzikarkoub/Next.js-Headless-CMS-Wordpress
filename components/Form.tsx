@@ -1,5 +1,5 @@
 import React, { useState, ChangeEvent, FormEvent } from "react";
-import { Button, Snackbar, TextField } from "@mui/material";
+import { Button, TextField } from "@mui/material";
 import SuccessAlert from "./SuccessAlert";
 import FailAlert from "./FailAlert";
 
@@ -32,6 +32,7 @@ export default function Form() {
   });
   const [openSuccess, setOpenSuccess] = useState(false);
   const [openError, setOpenError] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false); // State to track submission status
 
   const handleClose = () => {
     setOpenSuccess(false);
@@ -48,7 +49,7 @@ export default function Form() {
 
   const validateForm = () => {
     let valid = true;
-    const errors: FormErrors = {} as FormErrors; // Cast empty object as FormErrors
+    const errors: FormErrors = {};
 
     // Check if name is empty
     if (!formData.name.trim()) {
@@ -90,16 +91,20 @@ export default function Form() {
     }
 
     // Form data is valid, proceed with submission
-    // Your form submission logic here
+    setIsSubmitting(true); // Set isSubmitting to true
     console.log("Form submitted successfully!");
 
-    setOpenSuccess(true);
-    setFormData({
-      name: "",
-      email: "",
-      subject: "",
-      message: "",
-    });
+    // Simulate submission delay
+    setTimeout(() => {
+      setOpenSuccess(true);
+      setIsSubmitting(false); // Reset isSubmitting after submission
+      setFormData({
+        name: "",
+        email: "",
+        subject: "",
+        message: "",
+      });
+    }, 2000); // Change 2000 to your desired delay in milliseconds
   };
 
   return (
@@ -116,7 +121,6 @@ export default function Form() {
           helperText={formErrors.name}
           fullWidth
           margin="normal"
-          className="w-full rounded-md border border-[#e0e0e0] bg-white text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
         />
         <TextField
           type="email"
@@ -158,8 +162,9 @@ export default function Form() {
         <Button
           type="submit"
           className="hover:shadow-form rounded-md bg-gray-900  hover:bg-gray-700 py-3 px-8 text-base text-white outline-none mt-5"
+          // disabled={isSubmitting} // Disable button while submitting
         >
-          Submit
+          {isSubmitting ? "Submitting..." : "Submit"}
         </Button>
       </form>
       {openSuccess && (
