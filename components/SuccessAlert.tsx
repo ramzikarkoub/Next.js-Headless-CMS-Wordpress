@@ -30,7 +30,7 @@ export default function SuccessAlert({ handleClose }) {
           }}
         >
           <div>
-            <Check fontSize="lg" />
+            <Check fontSize="large" />
           </div>
         </AspectRatio>
       }
