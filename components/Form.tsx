@@ -10,12 +10,12 @@ interface FormData {
   message: string;
 }
 
-interface FormErrors {
-  name: string;
-  email: string;
-  subject: string;
-  message: string;
-}
+type FormErrors = {
+  name?: string;
+  email?: string;
+  subject?: string;
+  message?: string;
+};
 
 export default function Form() {
   const [formData, setFormData] = useState<FormData>({
