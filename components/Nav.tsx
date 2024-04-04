@@ -125,8 +125,12 @@ const navigation = [
     href: "https://www.ramzikarkoub.com/",
     external: true,
   },
-  { name: "LinkedIn", href: "https://www.linkedin.com/", external: true },
-  { name: "Github", href: "https://github.com/", external: true },
+  {
+    name: "LinkedIn",
+    href: "https://www.linkedin.com/in/ramzikarkoub/",
+    external: true,
+  },
+  { name: "Github", href: "https://github.com/ramzikarkoub", external: true },
 ];
 
 const darSelectedButton =
