@@ -36,7 +36,7 @@ export default function FailAlert({ handleClose }) {
           <Button variant="outlined" size="sm">
             Open network settings
           </Button>
-          <Button variant="solid" size="sm" handleClose={handleClose}>
+          <Button variant="solid" size="sm" onClick={}={handleClose}>
             Try again
           </Button>
         </Box>
