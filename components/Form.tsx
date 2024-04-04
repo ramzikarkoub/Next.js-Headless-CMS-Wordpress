@@ -48,7 +48,7 @@ export default function Form() {
 
   const validateForm = () => {
     let valid = true;
-    const errors: FormErrors = {};
+    const errors: FormErrors = {} as FormErrors; // Cast empty object as FormErrors
 
     // Check if name is empty
     if (!formData.name.trim()) {
