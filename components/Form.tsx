@@ -1,134 +1,30 @@
-// import React from "react";
-// import { toast } from "react-toastify";
-// import "react-toastify/dist/ReactToastify.css";
-
-// // export default function Form() {
-// //   const handleSubmit = async (e) => {
-// //     e.preventDefault();
-// //     const formData = new FormData(e.target);
-// //     const formId = 1655; // Assuming you have the form ID
-// //     formData.append("_wpcf7_unit_tag", "wpcf7-f" + formId + "-123"); // Adding the _wpcf7_unit_tag parameter
-// //     const reqOptions = {
-// //       method: "POST",
-// //       body: formData,
-// //     };
-// //     const req = await fetch(
-// //       "https://www.ramzikarkoub.com/wp-json/contact-form-7/v1/contact-forms/1655/feedback",
-// //       reqOptions
-// //     );
-// //     const response = await req.json();
-// //     console.log(response);
-// //     if (response.status === "mail_sent") {
-// //       toast.success(response.message);
-// //     } else {
-// //       toast.error("Form submission failed. Please try again.");
-// //     }
-// //   };
-// export default function Form() {
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-//     const formData = new FormData(e.target);
-//     const formId = 1655; // Assuming you have the form ID
-//     formData.append("_wpcf7_unit_tag", "wpcf7-f" + formId + "-123"); // Adding the _wpcf7_unit_tag parameter
-//     const reqOptions = {
-//       method: "POST",
-//       body: formData,
-//     };
-//     const req = await fetch(
-//       "https://www.ramzikarkoub.com/wp-json/contact-form-7/v1/contact-forms/1655/feedback",
-//       reqOptions
-//     );
-//     const response = await req.json();
-//     console.log(response);
-//     if (response.status === "mail_sent") {
-//       console.log("zebu");
-//     }
-//   };
-//   return (
-//     <form onSubmit={handleSubmit}>
-//       <div className="mb-5">
-//         <label
-//           htmlFor="name"
-//           className="mb-3 block text-base font-medium text-[#07074D]"
-//         >
-//           Full Name
-//         </label>
-//         <input
-//           type="text"
-//           name="your-name"
-//           id="name"
-//           placeholder="Full Name"
-//           className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-//         />
-//       </div>
-//       <div className="mb-5">
-//         <label
-//           htmlFor="email"
-//           className="mb-3 block text-base font-medium text-[#07074D]"
-//         >
-//           Email Address
-//         </label>
-//         <input
-//           type="email"
-//           name="your-email"
-//           id="email"
-//           placeholder="example@domain.com"
-//           className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-//         />
-//       </div>
-//       <div className="mb-5">
-//         <label
-//           htmlFor="subject"
-//           className="mb-3 block text-base font-medium text-[#07074D]"
-//         >
-//           Subject
-//         </label>
-//         <input
-//           type="text"
-//           name="your-subject"
-//           id="subject"
-//           placeholder="Enter your subject"
-//           className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-//         />
-//       </div>
-//       <div className="mb-5">
-//         <label
-//           htmlFor="message"
-//           className="mb-3 block text-base font-medium text-[#07074D]"
-//         >
-//           Message
-//         </label>
-//         <textarea
-//           rows={4}
-//           name="your-message"
-//           id="message"
-//           placeholder="Type your message"
-//           className="w-full resize-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-//         ></textarea>
-//       </div>
-//       <div>
-//         <button className="hover:shadow-form rounded-md bg-[#6A64F1] py-3 px-8 text-base font-semibold text-white outline-none">
-//           Submit
-//         </button>
-//       </div>
-//     </form>
-//   );
-// }
-
-import React, { useState } from "react";
+import React, { useState, ChangeEvent, FormEvent } from "react";
 import { Button, Snackbar, TextField } from "@mui/material";
-import "react-toastify/dist/ReactToastify.css";
 import SuccessAlert from "./SuccessAlert";
 import FailAlert from "./FailAlert";
 
+interface FormData {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+}
+
+interface FormErrors {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+}
+
 export default function Form() {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
     subject: "",
     message: "",
   });
-  const [formErrors, setFormErrors] = useState({
+  const [formErrors, setFormErrors] = useState<FormErrors>({
     name: "",
     email: "",
     subject: "",
@@ -137,15 +33,12 @@ export default function Form() {
   const [openSuccess, setOpenSuccess] = useState(false);
   const [openError, setOpenError] = useState(false);
 
-  const handleClose = (event, reason) => {
-    if (reason === "clickaway") {
-      return;
-    }
+  const handleClose = () => {
     setOpenSuccess(false);
     setOpenError(false);
   };
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
@@ -155,7 +48,7 @@ export default function Form() {
 
   const validateForm = () => {
     let valid = true;
-    const errors = {};
+    const errors: FormErrors = {};
 
     // Check if name is empty
     if (!formData.name.trim()) {
@@ -188,7 +81,7 @@ export default function Form() {
     return valid;
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     // Validate form
@@ -212,12 +105,6 @@ export default function Form() {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <label
-          htmlFor="name"
-          className="mb-3 block text-base font-medium text-[#07074D]"
-        >
-          Full Name
-        </label>
         <TextField
           type="text"
           name="name"
