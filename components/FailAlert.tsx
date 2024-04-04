@@ -12,7 +12,7 @@ import Check from "@mui/icons-material/Check";
 import Close from "@mui/icons-material/Close";
 import Warning from "@mui/icons-material/Warning";
 
-export default function FailAlert({ handleClose = { handleClose } }) {
+export default function FailAlert({ handleClose }) {
   return (
     <Alert
       variant="soft"
