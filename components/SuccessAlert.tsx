@@ -50,7 +50,7 @@ export default function SuccessAlert({ handleClose }) {
       <div>
         <Typography level="title-lg">Message sent!</Typography>
         <Typography level="body-sm">
-          Thanks for connecting with me, I will answer you ASAP!
+          Thanks for connecting with me, I will get back to you ASAP!
         </Typography>
       </div>
       {/* <LinearProgress

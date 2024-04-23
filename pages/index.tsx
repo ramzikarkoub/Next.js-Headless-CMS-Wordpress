@@ -1,5 +1,6 @@
 "use client";
 import { useRouter } from "next/router";
+import OnboardingSteps from "../components/OnboardingSteps";
 // import { useState, useEffect } from "react";
 
 function Project() {

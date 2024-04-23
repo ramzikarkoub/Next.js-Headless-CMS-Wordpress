@@ -8,6 +8,7 @@ interface FormData {
   email: string;
   subject: string;
   message: string;
+  _wpcf7_unit_tag: boolean;
 }
 
 type FormErrors = {
@@ -23,13 +24,9 @@ export default function Form() {
     email: "",
     subject: "",
     message: "",
+    _wpcf7_unit_tag: true,
   });
-  const [formErrors, setFormErrors] = useState<FormErrors>({
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
-  });
+  const [formErrors, setFormErrors] = useState<FormErrors>({});
   const [openSuccess, setOpenSuccess] = useState(false);
   const [openError, setOpenError] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false); // State to track submission status
@@ -94,17 +91,43 @@ export default function Form() {
     setIsSubmitting(true); // Set isSubmitting to true
     console.log("Form submitted successfully!");
 
-    // Simulate submission delay
-    setTimeout(() => {
-      setOpenSuccess(true);
-      setIsSubmitting(false); // Reset isSubmitting after submission
-      setFormData({
-        name: "",
-        email: "",
-        subject: "",
-        message: "",
-      });
-    }, 2000); // Change 2000 to your desired delay in milliseconds
+    try {
+      const formDataToSend = new FormData();
+      formDataToSend.append("your-name", formData.name);
+      formDataToSend.append("your-email", formData.email);
+      formDataToSend.append("your-subject", formData.subject);
+      formDataToSend.append("your-message", formData.message);
+      formDataToSend.append("_wpcf7_unit_tag", "1655");
+
+      const response = await fetch(
+        "https://www.ramzikarkoub.com/wp-json/contact-form-7/v1/contact-forms/1655/feedback",
+        {
+          method: "POST",
+          body: formDataToSend,
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to submit form");
+      }
+
+      // Simulate submission delay
+      setTimeout(() => {
+        setOpenSuccess(true);
+        setIsSubmitting(false); // Reset isSubmitting after submission
+        setFormData({
+          name: "",
+          email: "",
+          subject: "",
+          message: "",
+          _wpcf7_unit_tag: true,
+        });
+      }, 1000); // Change 2000 to your desired delay in milliseconds
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      setOpenError(true);
+      setIsSubmitting(false); // Reset isSubmitting if submission fails
+    }
   };
 
   return (
@@ -161,7 +184,7 @@ export default function Form() {
         />
         <Button
           type="submit"
-          className="hover:shadow-form rounded-md bg-gray-900  hover:bg-gray-700 py-3 px-8 text-base text-white outline-none mt-5"
+          className="hover:shadow-form rounded-md bg-gray-900 hover:bg-gray-700 py-3 px-8 text-base text-white outline-none mt-5 "
           // disabled={isSubmitting} // Disable button while submitting
         >
           {isSubmitting ? "Submitting..." : "Submit"}
