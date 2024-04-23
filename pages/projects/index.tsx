@@ -54,7 +54,6 @@ import React, { useState, useEffect } from "react";
 import ProjectCard from "../../components/ProjectCard";
 import Footer from "../../components/Foote";
 import Header from "../../components/Nav";
-import Joyride from "react-joyride";
 
 /*
  * If your steps are not dynamic you can use a simple array.
